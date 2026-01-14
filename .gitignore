@@ -1,0 +1,18 @@
+# JetBrains Rider
+.idea/
+
+# Backend (.NET)
+MarketPlaceBackend/**/bin/
+MarketPlaceBackend/**/obj/
+
+# Frontend (React)
+FrontEnd/**/node_modules/
+FrontEnd/**/build/
+FrontEnd/**/dist/
+
+# Secrets / env
+**/.env
+**/.env.*
+
+# Mac Junk File
+**/.DS_Store
