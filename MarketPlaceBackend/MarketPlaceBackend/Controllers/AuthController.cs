@@ -4,13 +4,12 @@ namespace MarketPlaceBackend;
 
 [ApiController]
 [Route("api/[controller]/[action]")]
-public class Test1Controller : ControllerBase
+public class AuthController : ControllerBase
 {
-
     [HttpGet]
-    public IActionResult TestApi1()
+    public IActionResult TestGet()
     {
-        return Ok("Response from Test 1");
+        return Ok($"Recieved Test Get Request");
     }
-
+    
 }
