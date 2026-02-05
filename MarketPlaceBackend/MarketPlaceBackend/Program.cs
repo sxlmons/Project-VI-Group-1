@@ -1,13 +1,18 @@
-using Microsoft.AspNetCore.Identity;
+using MarketPlaceBackend;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using MarketPlaceBackend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();   
-builder.Services.AddSwaggerGen();       
+builder.Services.AddSwaggerGen();  
+
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Adds a logger instance for each HTTP request
+builder.Services.AddScoped<Logger>();
 
 // Add Identity
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
