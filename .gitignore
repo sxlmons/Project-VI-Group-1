@@ -16,3 +16,5 @@ FrontEnd/**/dist/
 
 # Mac Junk File
 **/.DS_Store
+
+**/ImageStorage/
