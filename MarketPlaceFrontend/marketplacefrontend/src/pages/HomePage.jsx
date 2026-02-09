@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import FeaturedCarousel from "../components/FeaturedCarousel";
 import CategorySection from "../components/CategorySection";
-import { fetchPosts } from "../services/api";
+import { PostsAPI } from "../services/api";
+
 
 export default function HomePage() {
   const [featuredPosts, setFeaturedPosts] = useState([]);
@@ -13,12 +14,12 @@ export default function HomePage() {
   useEffect(() => {
     async function loadPosts() {
       try {
-        const featured = await fetchPosts({ location });
-        const electronics = await fetchPosts({
+        const featured = await PostsAPI.fetch({ location });
+        const electronics = await PostsAPI.fetch({
           location,
           category: "Electronics",
         });
-        const vehicles = await fetchPosts({
+        const vehicles = await PostsAPI.fetch({
           location,
           category: "Vehicles",
         });

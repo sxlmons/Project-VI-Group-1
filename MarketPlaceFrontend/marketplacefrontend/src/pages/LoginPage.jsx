@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AuthAPI } from "../services/api"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -11,31 +12,15 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
-    try {
-      const response = await fetch("http://localhost:5289/api/auth/login", {
-        method: "POST",
-        credentials: "include", // allow session cookie
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+      try {
+          await AuthAPI.login({ email, password });
 
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || "Invalid login credentials");
+          window.location.href = "/home";
+      } catch (err) {
+          setError(err.message);
+      } finally {
+          setLoading(false);
       }
-
-      // Successful login → redirect
-      window.location.href = "/home";
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
   }
 
   return (
