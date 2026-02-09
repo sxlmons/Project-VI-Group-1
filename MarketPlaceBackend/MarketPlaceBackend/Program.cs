@@ -35,8 +35,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.None; // <-- allow cross-site cookies
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // must use HTTPS
+    options.Cookie.SameSite = SameSiteMode.None; // <-- dev cross-origin
+    options.Cookie.SecurePolicy = CookieSecurePolicy.None; // http for dev
     options.ExpireTimeSpan = TimeSpan.FromHours(24);
     options.Events.OnRedirectToLogin = context =>
     {
@@ -49,9 +49,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("ReactCors", policy =>
+    options.AddPolicy("ReactDev", policy =>
     {
-        policy.WithOrigins("http://localhost:56987") // your React dev server
+        policy.WithOrigins("http://localhost:56987") // dev server port
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials(); // allows cookies/session
@@ -60,19 +60,14 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// --- Middleware ---
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("ReactDev"); // cors for dev
 }
 
 app.UseHttpsRedirection();
-
-// Apply CORS BEFORE authentication/authorization
-app.UseCors("ReactCors");
-
 app.UseAuthentication();
 app.UseAuthorization();
 
