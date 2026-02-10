@@ -40,10 +40,9 @@ export default function RegisterPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: formData.username,
             email: formData.email,
             password: formData.password,
-            location: formData.location,
+            //location: formData.location,
           }),
         }
       );
@@ -71,18 +70,6 @@ export default function RegisterPage() {
         {error && <div style={styles.error}>{error}</div>}
 
         <label style={styles.label}>
-          Username
-          <input
-            name="username"
-            type="text"
-            required
-            value={formData.username}
-            onChange={handleChange}
-            style={styles.input}
-          />
-        </label>
-
-        <label style={styles.label}>
           Email
           <input
             name="email"
@@ -95,18 +82,18 @@ export default function RegisterPage() {
           />
         </label>
 
-        <label style={styles.label}>
-          Location
-          <input
-            name="location"
-            type="text"
-            required
-            placeholder="City or ZIP code"
-            value={formData.location}
-            onChange={handleChange}
-            style={styles.input}
-          />
-        </label>
+        {/*<label style={styles.label}>*/}
+        {/*  Location*/}
+        {/*  <input*/}
+        {/*    name="location"*/}
+        {/*    type="text"*/}
+        {/*    required*/}
+        {/*    placeholder="City or ZIP code"*/}
+        {/*    value={formData.location}*/}
+        {/*    onChange={handleChange}*/}
+        {/*    style={styles.input}*/}
+        {/*  />*/}
+        {/*</label>*/}
 
         <label style={styles.label}>
           Password
