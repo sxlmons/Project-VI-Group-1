@@ -71,7 +71,6 @@ coverage/
 # Entity Framework
 *.edmx.diagram
 *.edmx.sql
-Migrations/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
