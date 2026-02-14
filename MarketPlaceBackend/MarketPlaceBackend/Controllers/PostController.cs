@@ -14,10 +14,10 @@ namespace MarketPlaceBackend.Controllers;
 public class PostController : ControllerBase
 {
     private readonly ApplicationDbContext _db;
-    private readonly Logger _logger;
+    private readonly ILogger _logger;
     private readonly string _imageStorage;
 
-    public PostController(ApplicationDbContext db, Logger logger, IWebHostEnvironment env)
+    public PostController(ApplicationDbContext db, ILogger logger, IWebHostEnvironment env)
     {
         _db = db;
         _logger = logger;

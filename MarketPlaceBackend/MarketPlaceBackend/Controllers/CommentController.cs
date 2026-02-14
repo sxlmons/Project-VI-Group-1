@@ -13,9 +13,9 @@ namespace MarketPlaceBackend.Controllers;
 public class CommentController : ControllerBase
 {
     private readonly ApplicationDbContext _db;
-    private readonly Logger _logger;
+    private readonly ILogger _logger;
     
-    public CommentController(ApplicationDbContext db, Logger logger)
+    public CommentController(ApplicationDbContext db, ILogger logger)
     {
         _db = db;
         _logger = logger;

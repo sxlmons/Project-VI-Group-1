@@ -14,12 +14,12 @@ public class AuthController : ControllerBase
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
     
-    private readonly Logger _logger;
+    private readonly ILogger _logger;
 
     public AuthController(
         UserManager<IdentityUser> userManager,
         SignInManager<IdentityUser> signInManager, 
-        Logger logger)
+        ILogger logger)
     {
         _userManager = userManager;
         _signInManager = signInManager;

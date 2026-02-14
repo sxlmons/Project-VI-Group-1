@@ -3,7 +3,7 @@ using MarketPlaceBackend.Models;
 
 namespace MarketPlaceBackend;
 
-public class Logger
+public class Logger : ILogger
 { 
     private readonly ApplicationDbContext _db;
 

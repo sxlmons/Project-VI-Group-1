@@ -12,10 +12,10 @@ namespace MarketPlaceBackend.Controllers;
 public class ImageController : ControllerBase
 {
     private readonly ApplicationDbContext _db;
-    private readonly Logger _logger;
+    private readonly ILogger _logger;
     private readonly string _imageStorage;
 
-    public ImageController(ApplicationDbContext db, Logger logger, IWebHostEnvironment env)
+    public ImageController(ApplicationDbContext db, ILogger logger, IWebHostEnvironment env)
     {
         _db = db;
         _logger = logger;
