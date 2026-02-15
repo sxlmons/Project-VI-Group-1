@@ -1,6 +1,6 @@
 ﻿namespace MarketPlaceBackend.Tests;
 
-public class PostControllerTests
+public class PostIntegrationTests
 {
     [SetUp]
     public void Setup()
