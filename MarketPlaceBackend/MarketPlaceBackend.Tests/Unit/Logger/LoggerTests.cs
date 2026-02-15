@@ -1,4 +1,4 @@
-﻿namespace MarketPlaceBackend.Tests;
+﻿namespace MarketPlaceBackend.Tests.Unit.Logger;
 
 public class LoggerTests
 {
