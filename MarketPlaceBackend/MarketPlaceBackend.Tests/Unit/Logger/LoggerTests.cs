@@ -1,6 +1,6 @@
-﻿namespace MarketPlaceBackend.Tests;
+﻿namespace MarketPlaceBackend.Tests.Unit.Logger;
 
-public class CommentControllerTests
+public class LoggerTests
 {
     [SetUp]
     public void Setup()

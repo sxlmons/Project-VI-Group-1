@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Security.Claims;
 
-namespace MarketPlaceBackend.Tests.Controllers;
+namespace MarketPlaceBackend.Tests.Unit.Controllers;
 
 [TestFixture]
 public class AuthControllerTests

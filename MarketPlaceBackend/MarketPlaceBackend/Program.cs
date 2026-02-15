@@ -1,16 +1,17 @@
 using MarketPlaceBackend;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using MarketPlaceBackend.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- Add services ---
+// [ SERVICES ]
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -23,14 +24,13 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 6;
     options.Password.RequireNonAlphanumeric = true;
-
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     options.Lockout.MaxFailedAccessAttempts = 5;
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-// Configure cookie
+// Session Cookie
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.HttpOnly = true;
@@ -42,18 +42,19 @@ builder.Services.ConfigureApplicationCookie(options =>
     };
 });
 
-// --- Enable CORS for React frontend ---
-
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactDev", policy =>
     {
-        policy.WithOrigins("http://localhost:56987") // dev server port
+        policy.WithOrigins("http://localhost:56987")
               .AllowAnyHeader()
               .AllowAnyMethod()
-              .AllowCredentials(); // allows cookies/session
+              .AllowCredentials();
     });
 });
+
+// [ MIDDLEWARE ]
 
 var app = builder.Build();
 
@@ -61,13 +62,15 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors("ReactDev"); // cors for dev
+    app.UseCors("ReactDev");
 }
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
+
+// Enables WebApplicationFactory access for integration tests
+public partial class Program { }

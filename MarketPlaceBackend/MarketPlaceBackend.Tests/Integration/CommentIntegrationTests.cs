@@ -1,6 +1,6 @@
 ﻿namespace MarketPlaceBackend.Tests;
 
-public class LoggerTests
+public class CommentIntegrationTests
 {
     [SetUp]
     public void Setup()
